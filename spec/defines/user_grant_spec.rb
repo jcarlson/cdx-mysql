@@ -19,7 +19,7 @@ describe 'mysql::user::grant' do
     it "creates the grant" do
       should contain_exec("granting #{user} access to #{database}").
              with(
-               :command => "mysql -uroot -p13306 --password='' \
+               :command => "mysql -uroot -p3306 --password='' \
         -e \"grant ALL on #{database}.* to '#{user}'@'localhost'; \
         flush privileges;\""
         )
@@ -40,7 +40,7 @@ describe 'mysql::user::grant' do
     it "revokes the users privs" do
       should contain_exec("removing #{user} access to #{database}").
              with(
-               :command => "mysql -uroot -p13306 --password='' \
+               :command => "mysql -uroot -p3306 --password='' \
         -e \"REVOKE ALL PRIVILEGES on #{database}.* to '#{user}'@'localhost'; \
         flush privileges;\""
              )
